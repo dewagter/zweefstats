@@ -218,14 +218,17 @@ const config: Permission[] = [
 				calculate: (stats) => stats.timesAfterExam.picTime / 60
 			},
 			{
-				name: 'Tenminste 100 starts op de LS-8 / Duo Discus (XLT) /ASW-27 of gelijkwaardig type',
+				// Clubreglement v14.6 §4.2.11: the ASG-29 counts as an equivalent type, as it does for
+				// the "20 starts op de ASW-27 en/of ASG29" requirement below
+				name: 'Tenminste 100 starts op de LS-8 / Duo Discus (XLT) / ASW-27 / ASG-29 of gelijkwaardig type',
 				goal: 100,
 				calculate: (stats) =>
 					totalStartCount(stats, [
 						...commonTypes.ls4,
 						...commonTypes.ls8,
 						...commonTypes.duo,
-						...commonTypes.asw27
+						...commonTypes.asw27,
+						...commonTypes.asg29
 					])
 			},
 			{
