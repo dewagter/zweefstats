@@ -10,6 +10,12 @@ function totalStartCount(stats: Stats, types: string[]) {
 	}, 0);
 }
 
+// Number of cross-country flights of at least the given distance in km (field `afstand`).
+// Clubreglement v14.6 §4.3 asks for a minimum number of 200 km or 300 km flights per type.
+function longXcountryFlightCount(stats: Stats, km: number) {
+	return stats.xcountryFlights.filter((flight) => Number(flight.afstand) >= km).length;
+}
+
 const commonRequirements = {
 	SPL: {
 		name: 'SPL',
@@ -563,7 +569,9 @@ const config: Permission[] = [
 				}
 			},
 			{
-				name: 'Minimaal 2 overlandvluchten van tenminste 200 kilometer'
+				name: 'Minimaal 2 overlandvluchten van tenminste 200 kilometer',
+				goal: 2,
+				calculate: (stats) => longXcountryFlightCount(stats, 200)
 			},
 			{
 				name: 'Tenminste 2 van deze overlandvluchten op LS-4b/LS-8 of gelijkwaardig type',
@@ -651,7 +659,9 @@ const config: Permission[] = [
 				calculate: (stats) => stats.xcountryFlightsCount
 			},
 			{
-				name: 'Minimaal 3 overlandvluchten van tenminste 300 kilometer'
+				name: 'Minimaal 3 overlandvluchten van tenminste 300 kilometer',
+				goal: 3,
+				calculate: (stats) => longXcountryFlightCount(stats, 300)
 			},
 			{
 				name: 'Tenminste 2 van deze overlandvluchten op een Duo Discus (XLT)',
@@ -697,7 +707,9 @@ const config: Permission[] = [
 				}
 			},
 			{
-				name: 'Minimaal 2 overlandvluchten van tenminste 200 kilometer'
+				name: 'Minimaal 2 overlandvluchten van tenminste 200 kilometer',
+				goal: 2,
+				calculate: (stats) => longXcountryFlightCount(stats, 200)
 			},
 			{
 				name: 'Tenminste 2 van deze overlandvluchten op LS-4b/LS-8 of gelijkwaardig type',
@@ -740,7 +752,9 @@ const config: Permission[] = [
 				calculate: (stats) => stats.xcountryFlightsCount
 			},
 			{
-				name: 'Minimaal 4 overlandvluchten van tenminste 200 kilometer'
+				name: 'Minimaal 4 overlandvluchten van tenminste 200 kilometer',
+				goal: 4,
+				calculate: (stats) => longXcountryFlightCount(stats, 200)
 			},
 			{
 				name: 'Minimaal 2 buitenlandingen',
@@ -783,7 +797,9 @@ const config: Permission[] = [
 				}
 			},
 			{
-				name: 'Minimaal 2 overlandvluchten van tenminste 200 kilometer'
+				name: 'Minimaal 2 overlandvluchten van tenminste 200 kilometer',
+				goal: 2,
+				calculate: (stats) => longXcountryFlightCount(stats, 200)
 			}
 		]
 	}
