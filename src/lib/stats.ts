@@ -1,4 +1,5 @@
 // Sanitization logic moved to src/lib/sanitize.ts
+import { licenceOnlyTypes } from './airframes';
 
 export function sumTotal(array: number[]): number {
 	return array.reduce((partialSum, a) => partialSum + a, 0);
@@ -292,11 +293,12 @@ export function getStatistics(data: DutchFlight[], examDateOverride?: string): S
 		}
 	}
 
-	// Make some educated guesses on whether pilot has a license
-	let hasLicense = false;
-	if (airplanes.includes('LS-8a')) hasLicense = true;
-	if (airplanes.includes('LS-4b')) hasLicense = true;
-	if (airplanes.includes('ASG-29')) hasLicense = true;
+	// Make an educated guess on whether the pilot has a license: any PIC start on a type that
+	// requires one. Two-seaters (Duo Discus, Arcus) also appear in a student's log as dual
+	// flights, so only PIC starts count.
+	const hasLicense = licenceOnlyTypes.some(
+		(type) => (flightsByAirplane[type]?.picFlightsCount || 0) > 0
+	);
 
 	return {
 		pilot,

@@ -1,13 +1,7 @@
 import type { Permission } from '../permissions';
+import { airframeGroups } from '../airframes';
 
-const commonTypes = {
-	ask21: ['ASK-21', 'ASK-21(B)'],
-	ask23: ['ASK-23', 'ASK-23B'],
-	tweezitters: ['ASK-21', 'ASK-21(B)', 'K-13', 'K-7'],
-	duo: ['Duo Discus', 'Duo Discus T', 'Duo Discus XLT'],
-	ls4: ['LS-4', 'LS4', 'LS-4a', 'LS-4b', 'LS 4-b'],
-	ls8: ['LS-8', 'LS8', 'LS-8a', 'LS-8b']
-};
+const commonTypes = airframeGroups;
 
 // For every airplane type given, sums the total PIC starts of each type
 function totalStartCount(stats: Stats, types: string[]) {
@@ -231,7 +225,7 @@ const config: Permission[] = [
 						...commonTypes.ls4,
 						...commonTypes.ls8,
 						...commonTypes.duo,
-						'ASW-27'
+						...commonTypes.asw27
 					])
 			},
 			{
@@ -242,7 +236,7 @@ const config: Permission[] = [
 			{
 				name: 'Tenminste 20 starts op de ASW-27 en/of ASG29',
 				goal: 20,
-				calculate: (stats) => totalStartCount(stats, ['ASW-27', 'ASG-29'])
+				calculate: (stats) => totalStartCount(stats, [...commonTypes.asw27, ...commonTypes.asg29])
 			},
 			{
 				name: 'D-brevet'
@@ -306,13 +300,13 @@ const config: Permission[] = [
 						...commonTypes.ls4,
 						...commonTypes.ls8,
 						...commonTypes.duo,
-						'ASW-27'
+						...commonTypes.asw27
 					])
 			},
 			{
 				name: '10 starts op de ASW-27',
 				goal: 10,
-				calculate: (stats) => totalStartCount(stats, ['ASW-27'])
+				calculate: (stats) => totalStartCount(stats, commonTypes.asw27)
 			},
 			{
 				name: 'D-brevet'
@@ -527,12 +521,12 @@ const config: Permission[] = [
 				name: crossCountryCommonRequirements.recentTypeStarts.name,
 				goal: crossCountryCommonRequirements.recentTypeStarts.goal,
 				calculate: (stats) =>
-					crossCountryCommonRequirements.recentTypeStarts.calculate(stats, ['ASW-27'])
+					crossCountryCommonRequirements.recentTypeStarts.calculate(stats, commonTypes.asw27)
 			},
 			{
 				name: crossCountryCommonRequirements.typeStarts.name,
 				goal: crossCountryCommonRequirements.typeStarts.goal,
-				calculate: (stats) => crossCountryCommonRequirements.typeStarts.calculate(stats, ['ASW-27'])
+				calculate: (stats) => crossCountryCommonRequirements.typeStarts.calculate(stats, commonTypes.asw27)
 			},
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
@@ -571,13 +565,13 @@ const config: Permission[] = [
 				name: crossCountryCommonRequirements.recentTypeStarts.name,
 				goal: crossCountryCommonRequirements.recentTypeStarts.goal,
 				calculate: (stats) =>
-					crossCountryCommonRequirements.recentTypeStarts.calculate(stats, ['ASG-29E', 'ASG-29'])
+					crossCountryCommonRequirements.recentTypeStarts.calculate(stats, commonTypes.asg29)
 			},
 			{
 				name: crossCountryCommonRequirements.typeStarts.name,
 				goal: crossCountryCommonRequirements.typeStarts.goal,
 				calculate: (stats) =>
-					crossCountryCommonRequirements.typeStarts.calculate(stats, ['ASG-29E', 'ASG-29'])
+					crossCountryCommonRequirements.typeStarts.calculate(stats, commonTypes.asg29)
 			},
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
@@ -595,7 +589,7 @@ const config: Permission[] = [
 				goal: 1,
 				calculate: (stats) => {
 					const relevantFlights = stats.xcountryFlights.filter(
-						(flight) => flight.type === 'ASW-27'
+						(flight) => commonTypes.asw27.includes(flight.type || '')
 					);
 					return relevantFlights.length;
 				}
@@ -701,13 +695,13 @@ const config: Permission[] = [
 				name: crossCountryCommonRequirements.recentTypeStarts.name,
 				goal: crossCountryCommonRequirements.recentTypeStarts.goal,
 				calculate: (stats) =>
-					crossCountryCommonRequirements.recentTypeStarts.calculate(stats, ['Prefect', 'PH-192'])
+					crossCountryCommonRequirements.recentTypeStarts.calculate(stats, commonTypes.prefect)
 			},
 			{
 				name: crossCountryCommonRequirements.typeStarts.name,
 				goal: crossCountryCommonRequirements.typeStarts.goal,
 				calculate: (stats) =>
-					crossCountryCommonRequirements.typeStarts.calculate(stats, ['Prefect', 'PH-192'])
+					crossCountryCommonRequirements.typeStarts.calculate(stats, commonTypes.prefect)
 			},
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
