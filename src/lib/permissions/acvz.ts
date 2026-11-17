@@ -251,7 +251,25 @@ const config: Permission[] = [
 				name: 'Twee goede checkvluchten op de Arcus T met door de club daartoe aangewezen instructeurs. Een van deze starts dient een sleepstart te zijn.'
 			},
 			{
-				name: 'Minimaal 1 Arcus PIC/DBO vlucht in de afgelopen 90 dagen.'
+				// Clubreglement v14.6 §4.2.11. Not met: a check flight in the Arcus T with an Arcus
+				// instructor is required, which itself counts as a DBO flight.
+				name: 'Minimaal 1 Arcus PIC/DBO vlucht in de afgelopen 90 dagen.',
+				goal: 1,
+				calculate: (stats) => {
+					const now = new Date();
+					const ninetyDaysAgo = new Date();
+					ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+					return [...stats.picFlights, ...stats.dboFlights].filter((flight) => {
+						if (typeof flight.datum !== 'string' || typeof flight.type !== 'string') return false;
+						const flightDate = new Date(flight.datum);
+						return (
+							flightDate >= ninetyDaysAgo &&
+							flightDate <= now &&
+							commonTypes.arcus.includes(flight.type)
+						);
+					}).length;
+				}
 			}
 		]
 	},
@@ -596,6 +614,49 @@ const config: Permission[] = [
 			},
 			{
 				name: 'Bevoegd verklaring in ACvZ.zweef.app met toestemming voor motorgebruik ASG-29E'
+			}
+		]
+	},
+	{
+		// Clubreglement v14.6 §4.3.9
+		name: 'Overlandvluchten - Arcus T',
+		requirements: [
+			crossCountryCommonRequirements.SPL,
+			crossCountryCommonRequirements.twoHourFlights,
+			crossCountryCommonRequirements.recentFlights,
+			{
+				name: crossCountryCommonRequirements.recentTypeStarts.name,
+				goal: crossCountryCommonRequirements.recentTypeStarts.goal,
+				calculate: (stats) =>
+					crossCountryCommonRequirements.recentTypeStarts.calculate(stats, commonTypes.arcus)
+			},
+			{
+				name: crossCountryCommonRequirements.typeStarts.name,
+				goal: crossCountryCommonRequirements.typeStarts.goal,
+				calculate: (stats) =>
+					crossCountryCommonRequirements.typeStarts.calculate(stats, commonTypes.arcus)
+			},
+			crossCountryCommonRequirements.threeGoodLandings,
+			crossCountryCommonRequirements.overlandBriefing,
+			crossCountryCommonRequirements.DDIPermission,
+			{
+				name: '12 overlandvluchten',
+				goal: 12,
+				calculate: (stats) => stats.xcountryFlightsCount
+			},
+			{
+				name: 'Minimaal 3 overlandvluchten van tenminste 300 kilometer'
+			},
+			{
+				name: 'Tenminste 2 van deze overlandvluchten op een Duo Discus (XLT)',
+				goal: 2,
+				calculate: (stats) =>
+					stats.xcountryFlights.filter((flight) =>
+						commonTypes.duo.includes(flight.type || '')
+					).length
+			},
+			{
+				name: 'Bevoegd verklaring in ACvZ.zweef.app met toestemming voor motorgebruik Arcus T'
 			}
 		]
 	},
