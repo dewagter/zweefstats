@@ -639,6 +639,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '12 overlandvluchten',
 				goal: 12,
