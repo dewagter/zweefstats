@@ -1,5 +1,33 @@
 # Changelog
 
+## [1.6.0](https://github.com/florisporro/zweefstats/compare/v1.5.0...v1.6.0) (2026-11-17)
+
+
+### Features
+
+* algemene overlandeisen bevoegdverklaring en monteren toegevoegd ([38ae29f](https://github.com/florisporro/zweefstats/commit/38ae29fb13f527a937c2c9f2fdf27667d0f34b29))
+* Arcus T 90-dagenregel wordt berekend ([0bc7349](https://github.com/florisporro/zweefstats/commit/0bc7349ba866339b3fa93e8c6dd4586e0bb2f1ba))
+* Duo Discus vereist "overgelest zijn" zoals de andere types ([59a602c](https://github.com/florisporro/zweefstats/commit/59a602c26709630fc9fc831b68209c771749a93a))
+* migrate to SvelteKit 2 and Svelte 5 runes ([ecaa377](https://github.com/florisporro/zweefstats/commit/ecaa377fefb5e4992cb225622c089a4d82a63c58))
+* overlandbevoegdheid Arcus T toegevoegd ([82bcd32](https://github.com/florisporro/zweefstats/commit/82bcd32b37665b2fbe0ef33af4985a702dff75fd))
+* serve the API from the SvelteKit worker, deploy from git ([79b74c1](https://github.com/florisporro/zweefstats/commit/79b74c198ba3082a302dd75298eafa5a8f419f9d))
+* typegroepen in eigen module, met nieuwe groepen voor Arcus T en ASG-29 ([2b3a112](https://github.com/florisporro/zweefstats/commit/2b3a112fe017d552f692db45396e4b13eb9a2a5d))
+* upgrade to Tailwind 4 and daisyUI 5 ([0c301a4](https://github.com/florisporro/zweefstats/commit/0c301a4c576f99a2170cb95d48e984ef22bb9ff3))
+
+
+### Bug Fixes
+
+* ASW-27 overlesstarts op de Arcus T i.p.v. Duo Discus ([e5588dd](https://github.com/florisporro/zweefstats/commit/e5588dda812b30bd054d216499f49facbf5195c8))
+* ASW-27 startenlabel noemt ook de LS-4b ([a496d5d](https://github.com/florisporro/zweefstats/commit/a496d5d1b803fa55cc3f60fff26f3bcb6c12a44d))
+* hasLicense gebruikt de typegroepen ([0c3b5fe](https://github.com/florisporro/zweefstats/commit/0c3b5fe7e1e4efd800b398a0ec235f3c79394a82))
+* LS-8 eis van 15 LS-4 starts had geen doel ([1ace22b](https://github.com/florisporro/zweefstats/commit/1ace22b2d7bf31789c04a51b30776786a821d508))
+* LS-8 vereist overles op de LS-8, niet op de LS-4 ([2af75bb](https://github.com/florisporro/zweefstats/commit/2af75bb787d50b173e5aec8b87ad7e01881f05f4))
+* ontbrekende schrijfwijzen 'Duo' en 'ASK21' in de typegroepen ([76ac674](https://github.com/florisporro/zweefstats/commit/76ac67490514d64bf85f69a1c6416351009be0e7))
+* point KV at the production namespace, stop checking generated JS ([31ef92f](https://github.com/florisporro/zweefstats/commit/31ef92fa78948d1268730907f1d24fc18e4e3243))
+* rebuild the lockfile with every platform's native binaries ([5b7b04a](https://github.com/florisporro/zweefstats/commit/5b7b04a6d133ec37069dd8490a2e74e3dbf92696))
+* skip malformed records when rebuilding national statistics ([2f29238](https://github.com/florisporro/zweefstats/commit/2f29238a5d03f891880afd7331bc2aef129c8a60))
+* tweezittergroep kent ook de zweef.app-namen 'ASK-13' en 'ASK-7' ([16d7ac6](https://github.com/florisporro/zweefstats/commit/16d7ac698f27e5727ff1a6bf5cc9f663973cc890))
+
 ## [1.5.0](https://github.com/florisporro/zweefstats/compare/v1.4.1...v1.5.0) (2026-05-24)
 
 
