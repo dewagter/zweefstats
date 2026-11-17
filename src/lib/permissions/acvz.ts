@@ -177,6 +177,7 @@ const config: Permission[] = [
 			},
 			{
 				name: 'Na overlessen LS4 eerst 15 starts op de LS4 voordat overgelest wordt op de LS8',
+				goal: 15,
 				calculate: (stats) => totalStartCount(stats, commonTypes.ls4)
 			},
 			commonRequirements.ls4ls8nocombine
