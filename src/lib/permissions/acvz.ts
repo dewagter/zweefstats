@@ -427,7 +427,8 @@ const config: Permission[] = [
 				name: 'Theorie cursus club gevolgd'
 			},
 			{
-				name: 'Twee goede instructie / examen starts op de Duo Discus XLT of Arcus T met verschillende door de club daartoe aangewezen instructeurs.'
+				// Clubreglement v14.6 §4.2.13
+				name: 'Twee goede instructie / examen starts op de Duo Discus XLT of Arcus T met verschillende door de club daartoe aangewezen turbo instructeurs (§4.2.13).'
 			}
 		]
 	},
