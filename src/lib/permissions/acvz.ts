@@ -113,6 +113,14 @@ const crossCountryCommonRequirements = {
 	},
 	DDIPermission: {
 		name: 'Toestemming van de DDI voor iedere overlandvlucht afzonderlijk'
+	},
+	// Clubreglement v14.6 §4.3.1
+	typeEndorsement: {
+		name: 'Bevoegd verklaring in de ACvZ.zweef.app met overland toestemming voor het betreffende type van een bevoegde ACvZ instructeur'
+	},
+	// Clubreglement v14.6 §4.3.1
+	rigging: {
+		name: 'Ervaring met het monteren en demonteren van het betreffende type, alsmede het plaatsen in de aanhangwagen'
 	}
 };
 
@@ -426,6 +434,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: 'Solo overland als onderdeel van SPL-opleiding: EVO, VVO1 en VVO2 syllabus volledig afgerond'
 			},
@@ -459,6 +469,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: 'Tenminste 2 overlandvluchten',
 				goal: 2,
@@ -489,6 +501,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: 'Tenminste 2 overlandvluchten',
 				goal: 2,
@@ -518,6 +532,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '4 overlandvluchten',
 				goal: 4,
@@ -605,9 +621,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
-			{
-				name: 'Bevoegd verklaring in ACvZ.zweef.app met toestemming van instructeur'
-			},
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '4 overlandvluchten',
 				goal: 4,
@@ -651,9 +666,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
-			{
-				name: 'Bevoegd verklaring in ACvZ.zweef.app met toestemming van instructeur'
-			},
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '10 overlandvluchten',
 				goal: 10,
@@ -693,6 +707,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '4 overlandvluchten',
 				goal: 4,
