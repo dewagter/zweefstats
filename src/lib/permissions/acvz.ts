@@ -237,7 +237,25 @@ const config: Permission[] = [
 				name: 'Twee goede checkvluchten op de Arcus T met door de club daartoe aangewezen instructeurs. Een van deze starts dient een sleepstart te zijn.'
 			},
 			{
-				name: 'Minimaal 1 Arcus PIC/DBO vlucht in de afgelopen 90 dagen.'
+				// Clubreglement v14.6 §4.2.11. Not met: a check flight in the Arcus T with an Arcus
+				// instructor is required, which itself counts as a DBO flight.
+				name: 'Minimaal 1 Arcus PIC/DBO vlucht in de afgelopen 90 dagen.',
+				goal: 1,
+				calculate: (stats) => {
+					const now = new Date();
+					const ninetyDaysAgo = new Date();
+					ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+					return [...stats.picFlights, ...stats.dboFlights].filter((flight) => {
+						if (typeof flight.datum !== 'string' || typeof flight.type !== 'string') return false;
+						const flightDate = new Date(flight.datum);
+						return (
+							flightDate >= ninetyDaysAgo &&
+							flightDate <= now &&
+							commonTypes.arcus.includes(flight.type)
+						);
+					}).length;
+				}
 			}
 		]
 	},
