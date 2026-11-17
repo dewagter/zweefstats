@@ -172,7 +172,8 @@ const config: Permission[] = [
 				name: 'Twee overlesvluchten in Duo Discus waarvan een van tenminste 30 min. Indien er eerst 15 starts op de LS4b gemaakt zijn dan vervalt de eis van 2 overlesstarts en kan voldaan worden met een overles briefing.'
 			},
 			{
-				name: 'Overgelest zijn op de LS-4 door een bevoegde instructeur.'
+				// Clubreglement v14.6 §4.2.7
+				name: 'Overgelest zijn op de LS-8 door een bevoegde instructeur.'
 			},
 			{
 				name: 'Na overlessen LS4 eerst 15 starts op de LS4 voordat overgelest wordt op de LS8',
