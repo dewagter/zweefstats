@@ -16,6 +16,16 @@ function longXcountryFlightCount(stats: Stats, km: number) {
 	return stats.xcountryFlights.filter((flight) => Number(flight.afstand) >= km).length;
 }
 
+// Outlandings whose arrival field is not an airfield. zweef.app logs an airfield by its ICAO
+// code (4 capital letters, e.g. EHSB) and a field outside an airfield by its place name. An
+// empty arrival field is not counted, since it is unknown where the flight landed.
+function outlandingsAwayFromAirfields(stats: Stats) {
+	return stats.outlandings.filter((flight) => {
+		const arrival = typeof flight.aankomst_vliegveld === 'string' ? flight.aankomst_vliegveld.trim() : '';
+		return arrival !== '' && !/^[A-Z]{4}$/.test(arrival);
+	}).length;
+}
+
 const commonRequirements = {
 	SPL: {
 		name: 'SPL',
@@ -425,9 +435,11 @@ const config: Permission[] = [
 				calculate: (stats) => stats.xcountryFlightsCount
 			},
 			{
-				name: 'Minimaal 2 buitenlandingen',
+				// Clubreglement v14.6 §4.2.13: "Een landing op een ander vliegveld geldt in deze niet
+				// als buitenlanding."
+				name: 'Minimaal 2 buitenlandingen, niet op een ander vliegveld (§4.2.13)',
 				goal: 2,
-				calculate: (stats) => stats.outlandings.length
+				calculate: (stats) => outlandingsAwayFromAirfields(stats)
 			},
 			{
 				name: 'Theorie cursus club gevolgd'
