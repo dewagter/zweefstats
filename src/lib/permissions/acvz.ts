@@ -207,6 +207,10 @@ const config: Permission[] = [
 			},
 			{
 				name: 'Twee goede overles starts op de Duo Discus met verschillende door de club daartoe aangewezen instructeurs. Indien in het bezit van een sleepaantekening dient 1 van deze overlesstarts een vliegtuigsleepstart te zijn.'
+			},
+			{
+				// Clubreglement v14.6 §4.2.8
+				name: 'Overgelest zijn op de Duo Discus door een bevoegde instructeur.'
 			}
 		]
 	},
