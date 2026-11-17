@@ -271,7 +271,8 @@ const config: Permission[] = [
 				calculate: (stats) => stats.timesAfterExam.picTime / 60
 			},
 			{
-				name: 'Tenminste 60 starts op de LS8 / Duo Discus',
+				// Clubreglement v14.6 §4.2.10
+				name: 'Tenminste 60 starts op de LS4b / LS8 / Duo Discus of gelijkwaardig type',
 				goal: 60,
 				calculate: (stats) =>
 					totalStartCount(stats, [...commonTypes.ls4, ...commonTypes.ls8, ...commonTypes.duo])
