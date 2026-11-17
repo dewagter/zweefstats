@@ -266,7 +266,8 @@ const config: Permission[] = [
 				name: 'D-brevet'
 			},
 			{
-				name: 'Twee goede overles starts op de Duo Discus met verschillende door de club daartoe aangewezen instructeurs. Indien in het bezit van een sleepaantekening dient 1 van deze overlesstarts een vliegtuigsleepstart te zijn.'
+				// Clubreglement v14.6 §4.2.10 / §4.2.2: overlesstarts voor de ASW-27 op de Arcus T
+				name: 'Twee goede overles starts op de Arcus T met verschillende door de club daartoe aangewezen instructeurs. Indien in het bezit van een sleepaantekening dient 1 van deze overlesstarts een vliegtuigsleepstart te zijn.'
 			},
 			{
 				name: 'Overgelest zijn op de ASW-27 door een bevoegde instructeur.'
