@@ -594,6 +594,49 @@ const config: Permission[] = [
 		]
 	},
 	{
+		// Clubreglement v14.6 §4.3.9
+		name: 'Overlandvluchten - Arcus T',
+		requirements: [
+			crossCountryCommonRequirements.SPL,
+			crossCountryCommonRequirements.twoHourFlights,
+			crossCountryCommonRequirements.recentFlights,
+			{
+				name: crossCountryCommonRequirements.recentTypeStarts.name,
+				goal: crossCountryCommonRequirements.recentTypeStarts.goal,
+				calculate: (stats) =>
+					crossCountryCommonRequirements.recentTypeStarts.calculate(stats, commonTypes.arcus)
+			},
+			{
+				name: crossCountryCommonRequirements.typeStarts.name,
+				goal: crossCountryCommonRequirements.typeStarts.goal,
+				calculate: (stats) =>
+					crossCountryCommonRequirements.typeStarts.calculate(stats, commonTypes.arcus)
+			},
+			crossCountryCommonRequirements.threeGoodLandings,
+			crossCountryCommonRequirements.overlandBriefing,
+			crossCountryCommonRequirements.DDIPermission,
+			{
+				name: '12 overlandvluchten',
+				goal: 12,
+				calculate: (stats) => stats.xcountryFlightsCount
+			},
+			{
+				name: 'Minimaal 3 overlandvluchten van tenminste 300 kilometer'
+			},
+			{
+				name: 'Tenminste 2 van deze overlandvluchten op een Duo Discus (XLT)',
+				goal: 2,
+				calculate: (stats) =>
+					stats.xcountryFlights.filter((flight) =>
+						commonTypes.duo.includes(flight.type || '')
+					).length
+			},
+			{
+				name: 'Bevoegd verklaring in ACvZ.zweef.app met toestemming voor motorgebruik Arcus T'
+			}
+		]
+	},
+	{
 		name: 'Overlandvluchten - ASK-21',
 		requirements: [
 			crossCountryCommonRequirements.SPL,
