@@ -113,6 +113,14 @@ const crossCountryCommonRequirements = {
 	},
 	DDIPermission: {
 		name: 'Toestemming van de DDI voor iedere overlandvlucht afzonderlijk'
+	},
+	// Clubreglement v14.6 §4.3.1
+	typeEndorsement: {
+		name: 'Bevoegd verklaring in de ACvZ.zweef.app met overland toestemming voor het betreffende type van een bevoegde ACvZ instructeur'
+	},
+	// Clubreglement v14.6 §4.3.1
+	rigging: {
+		name: 'Ervaring met het monteren en demonteren van het betreffende type, alsmede het plaatsen in de aanhangwagen'
 	}
 };
 
@@ -172,10 +180,12 @@ const config: Permission[] = [
 				name: 'Twee overlesvluchten in Duo Discus waarvan een van tenminste 30 min. Indien er eerst 15 starts op de LS4b gemaakt zijn dan vervalt de eis van 2 overlesstarts en kan voldaan worden met een overles briefing.'
 			},
 			{
-				name: 'Overgelest zijn op de LS-4 door een bevoegde instructeur.'
+				// Clubreglement v14.6 §4.2.7
+				name: 'Overgelest zijn op de LS-8 door een bevoegde instructeur.'
 			},
 			{
 				name: 'Na overlessen LS4 eerst 15 starts op de LS4 voordat overgelest wordt op de LS8',
+				goal: 15,
 				calculate: (stats) => totalStartCount(stats, commonTypes.ls4)
 			},
 			commonRequirements.ls4ls8nocombine
@@ -197,6 +207,10 @@ const config: Permission[] = [
 			},
 			{
 				name: 'Twee goede overles starts op de Duo Discus met verschillende door de club daartoe aangewezen instructeurs. Indien in het bezit van een sleepaantekening dient 1 van deze overlesstarts een vliegtuigsleepstart te zijn.'
+			},
+			{
+				// Clubreglement v14.6 §4.2.8
+				name: 'Overgelest zijn op de Duo Discus door een bevoegde instructeur.'
 			}
 		]
 	},
@@ -257,7 +271,8 @@ const config: Permission[] = [
 				calculate: (stats) => stats.timesAfterExam.picTime / 60
 			},
 			{
-				name: 'Tenminste 60 starts op de LS8 / Duo Discus',
+				// Clubreglement v14.6 §4.2.10
+				name: 'Tenminste 60 starts op de LS4b / LS8 / Duo Discus of gelijkwaardig type',
 				goal: 60,
 				calculate: (stats) =>
 					totalStartCount(stats, [...commonTypes.ls4, ...commonTypes.ls8, ...commonTypes.duo])
@@ -266,7 +281,8 @@ const config: Permission[] = [
 				name: 'D-brevet'
 			},
 			{
-				name: 'Twee goede overles starts op de Duo Discus met verschillende door de club daartoe aangewezen instructeurs. Indien in het bezit van een sleepaantekening dient 1 van deze overlesstarts een vliegtuigsleepstart te zijn.'
+				// Clubreglement v14.6 §4.2.10 / §4.2.2: overlesstarts voor de ASW-27 op de Arcus T
+				name: 'Twee goede overles starts op de Arcus T met verschillende door de club daartoe aangewezen instructeurs. Indien in het bezit van een sleepaantekening dient 1 van deze overlesstarts een vliegtuigsleepstart te zijn.'
 			},
 			{
 				name: 'Overgelest zijn op de ASW-27 door een bevoegde instructeur.'
@@ -423,6 +439,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: 'Solo overland als onderdeel van SPL-opleiding: EVO, VVO1 en VVO2 syllabus volledig afgerond'
 			},
@@ -456,6 +474,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: 'Tenminste 2 overlandvluchten',
 				goal: 2,
@@ -486,6 +506,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: 'Tenminste 2 overlandvluchten',
 				goal: 2,
@@ -515,6 +537,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '4 overlandvluchten',
 				goal: 4,
@@ -602,9 +626,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
-			{
-				name: 'Bevoegd verklaring in ACvZ.zweef.app met toestemming van instructeur'
-			},
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '4 overlandvluchten',
 				goal: 4,
@@ -648,9 +671,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
-			{
-				name: 'Bevoegd verklaring in ACvZ.zweef.app met toestemming van instructeur'
-			},
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '10 overlandvluchten',
 				goal: 10,
@@ -690,6 +712,8 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.threeGoodLandings,
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
+			crossCountryCommonRequirements.typeEndorsement,
+			crossCountryCommonRequirements.rigging,
 			{
 				name: '4 overlandvluchten',
 				goal: 4,
