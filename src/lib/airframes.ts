@@ -16,3 +16,15 @@ export const airframeGroups = {
 	arcus: ['Arcus T', 'ArcusT', 'Arcus'],
 	prefect: ['Prefect', 'PH-192']
 };
+
+// Club types that may only be flown as PIC with a licence (SPL). Students fly solo only on the
+// ASK-21 and ASK-23 (Clubreglement v14.6 §4.2.9), so a PIC start on any of these types means the
+// pilot holds a licence.
+export const licenceOnlyTypes = [
+	...airframeGroups.ls4,
+	...airframeGroups.ls8,
+	...airframeGroups.duo,
+	...airframeGroups.asw27,
+	...airframeGroups.asg29,
+	...airframeGroups.arcus
+];
