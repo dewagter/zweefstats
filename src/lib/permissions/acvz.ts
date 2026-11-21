@@ -16,13 +16,17 @@ function longXcountryFlightCount(stats: Stats, km: number) {
 	return stats.xcountryFlights.filter((flight) => Number(flight.afstand) >= km).length;
 }
 
+// An ICAO airport code is 4 capital letters. The first letter is the ICAO region, and the
+// letters I, J, Q and X are not assigned to any region (e.g. EHSB, EDLE, LFOI are valid).
+const icaoAirportCode = /^[A-HK-PR-WYZ][A-Z]{3}$/;
+
 // Outlandings whose arrival field is not an airfield. zweef.app logs an airfield by its ICAO
-// code (4 capital letters, e.g. EHSB) and a field outside an airfield by its place name. An
-// empty arrival field is not counted, since it is unknown where the flight landed.
+// code (e.g. EHSB) and a field outside an airfield by its place name. Only a valid ICAO code
+// counts as an airfield; an empty arrival field still counts as an outlanding.
 function outlandingsAwayFromAirfields(stats: Stats) {
 	return stats.outlandings.filter((flight) => {
 		const arrival = typeof flight.aankomst_vliegveld === 'string' ? flight.aankomst_vliegveld.trim() : '';
-		return arrival !== '' && !/^[A-Z]{4}$/.test(arrival);
+		return !icaoAirportCode.test(arrival);
 	}).length;
 }
 
@@ -624,7 +628,9 @@ const config: Permission[] = [
 				calculate: (stats) => stats.xcountryFlightsCount
 			},
 			{
-				name: 'Minimaal 3 overlandvluchten van tenminste 200 kilometer'
+				name: 'Minimaal 3 overlandvluchten van tenminste 200 kilometer',
+				goal: 3,
+				calculate: (stats) => longXcountryFlightCount(stats, 200)
 			},
 			{
 				name: 'Tenminste 1 van deze overlandvluchten op ASW-27 of gelijkwaardig type',
