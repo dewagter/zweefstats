@@ -146,6 +146,14 @@ const config: Permission[] = [
 			{
 				name: 'SPL of Aantekening van 2 bevoegde instructeurs',
 				calculate: commonRequirements.SPL.calculate
+			},
+			{
+				// Clubreglement v14.6 §4.2.4
+				name: 'Een volledig afgetekende EVO progressiekaart in de ACvZ.zweef.app'
+			},
+			{
+				// Clubreglement v14.6 §4.2.4
+				name: 'Aantekening in het logboek en een SOLO bevoegd verklaring in de ACvZ.zweef.app waaruit toestemming blijkt van twee bevoegde instructeurs'
 			}
 		]
 	},
@@ -157,7 +165,8 @@ const config: Permission[] = [
 				calculate: commonRequirements.SPL.calculate
 			},
 			{
-				name: 'Aantal solovluchten in tweezitter',
+				// Clubreglement v14.6 §4.2.5: "bij voorkeur", so recommended, not required
+				name: 'Aantal solovluchten in tweezitter (aanbevolen)',
 				goal: 2,
 				calculate: (stats) => {
 					return totalStartCount(stats, commonTypes.tweezitters);
@@ -173,7 +182,8 @@ const config: Permission[] = [
 		requirements: [
 			commonRequirements.SPL,
 			{
-				name: 'Twee overlesvluchten in Duo Discus waarvan een van tenminste 30 min. Indien er eerst 15 starts op de LS-8 gemaakt zijn dan vervalt de eis van 2 overlesstarts en kan voldaan worden met een overles briefing.'
+				// Clubreglement v14.6 §4.2.6
+				name: 'Twee goede overlesstarts op de Duo Discus met verschillende door de club daartoe aangewezen instructeurs, waarvan een thermische vlucht van minimaal 30 min. Indien er eerst 15 starts op de LS-8 gemaakt zijn dan vervalt de eis van 2 overlesstarts en kan voldaan worden met een overles briefing.'
 			},
 			{
 				name: 'Overgelest zijn op de LS-4 door een bevoegde instructeur.'
@@ -191,7 +201,8 @@ const config: Permission[] = [
 		requirements: [
 			commonRequirements.SPL,
 			{
-				name: 'Twee overlesvluchten in Duo Discus waarvan een van tenminste 30 min. Indien er eerst 15 starts op de LS4b gemaakt zijn dan vervalt de eis van 2 overlesstarts en kan voldaan worden met een overles briefing.'
+				// Clubreglement v14.6 §4.2.7
+				name: 'Twee goede overlesstarts op de Duo Discus met verschillende door de club daartoe aangewezen instructeurs, waarvan een thermische vlucht van minimaal 30 min. Indien er eerst 15 starts op de LS4b gemaakt zijn dan vervalt de eis van 2 overlesstarts en kan voldaan worden met een overles briefing.'
 			},
 			{
 				// Clubreglement v14.6 §4.2.7
@@ -781,6 +792,10 @@ const config: Permission[] = [
 			},
 			{
 				name: 'Bevoegd verklaring in ACvZ.zweef.app met toestemming voor motorgebruik in geval van de Duo Discus XLT'
+			},
+			{
+				// Clubreglement v14.6 §4.3.7
+				name: 'Let op: bij overlandvluchten tijdens het reguliere vliegbedrijf vanaf Soesterberg of tijdens clubkampen dient de tweede inzittende een SPL-houder te zijn die lid is van de ACvZ.'
 			}
 		]
 	},
