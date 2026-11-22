@@ -465,6 +465,7 @@ const config: Permission[] = [
 		requirements: [
 			commonRequirements.SPL,
 			{
+				// Clubreglement v14.6 §4.2.13: "10 overlandvluchten". Counts starts (sum of the starts field)
 				name: 'Minimaal 10 overland vluchten',
 				goal: 10,
 				calculate: (stats) => stats.xcountryFlightsCount
@@ -546,6 +547,7 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.typeEndorsement,
 			crossCountryCommonRequirements.rigging,
 			{
+				// Clubreglement v14.6 §4.3.3: "Tenminste 2 overlandvluchten". Counts flights (logbook rows)
 				name: 'Tenminste 2 overlandvluchten',
 				goal: 2,
 				calculate: (stats) => {
@@ -578,6 +580,7 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.typeEndorsement,
 			crossCountryCommonRequirements.rigging,
 			{
+				// Clubreglement v14.6 §4.3.4: "Tenminste 2 overlandvluchten". Counts flights (logbook rows)
 				name: 'Tenminste 2 overlandvluchten',
 				goal: 2,
 				calculate: (stats) => {
@@ -609,6 +612,7 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.typeEndorsement,
 			crossCountryCommonRequirements.rigging,
 			{
+				// Clubreglement v14.6 §4.3.5: "4 overlandvluchten waarvan minimaal 2 van tenminste 200 kilometer". Counts flights (logbook rows)
 				name: '4 overlandvluchten',
 				goal: 4,
 				calculate: (stats) => {
@@ -621,6 +625,7 @@ const config: Permission[] = [
 				calculate: (stats) => longXcountryFlightCount(stats, 200)
 			},
 			{
+				// Clubreglement v14.6 §4.3.5: "Tenminste 2 van deze overlandvluchten" on a LS-4b/LS-8 or equivalent type
 				name: 'Tenminste 2 van deze overlandvluchten op LS-4b/LS-8 of gelijkwaardig type',
 				goal: 2,
 				calculate: (stats) => {
@@ -654,6 +659,7 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.overlandBriefing,
 			crossCountryCommonRequirements.DDIPermission,
 			{
+				// ASG-29E: no cross-country paragraph in Clubreglement v14.6. Counts starts (sum of the starts field)
 				name: '10 overlandvluchten',
 				goal: 10,
 				calculate: (stats) => stats.xcountryFlightsCount
@@ -664,6 +670,7 @@ const config: Permission[] = [
 				calculate: (stats) => longXcountryFlightCount(stats, 200)
 			},
 			{
+				// ASG-29E: no cross-country paragraph in Clubreglement v14.6
 				name: 'Tenminste 1 van deze overlandvluchten op ASW-27 of gelijkwaardig type',
 				goal: 1,
 				calculate: (stats) => {
@@ -703,6 +710,7 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.typeEndorsement,
 			crossCountryCommonRequirements.rigging,
 			{
+				// Clubreglement v14.6 §4.3.9: "12 overlandvluchten waarvan minimaal 3 van tenminste 300 kilometer". Counts starts (sum of the starts field)
 				name: '12 overlandvluchten',
 				goal: 12,
 				calculate: (stats) => stats.xcountryFlightsCount
@@ -713,6 +721,7 @@ const config: Permission[] = [
 				calculate: (stats) => longXcountryFlightCount(stats, 300)
 			},
 			{
+				// Clubreglement v14.6 §4.3.9: "Tenminste 2 van deze overlandvluchten" on a Duo Discus (XLT)
 				name: 'Tenminste 2 van deze overlandvluchten op een Duo Discus (XLT)',
 				goal: 2,
 				calculate: (stats) =>
@@ -749,6 +758,7 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.typeEndorsement,
 			crossCountryCommonRequirements.rigging,
 			{
+				// Clubreglement v14.6 §4.3.6: "de eisen zoals gesteld voor de ASW 27" (§4.3.5: "4 overlandvluchten"). Counts flights (logbook rows)
 				name: '4 overlandvluchten',
 				goal: 4,
 				calculate: (stats) => {
@@ -761,6 +771,7 @@ const config: Permission[] = [
 				calculate: (stats) => longXcountryFlightCount(stats, 200)
 			},
 			{
+				// Clubreglement v14.6 §4.3.6 via §4.3.5: "Tenminste 2 van deze overlandvluchten" on a LS-4b/LS-8 or equivalent type
 				name: 'Tenminste 2 van deze overlandvluchten op LS-4b/LS-8 of gelijkwaardig type',
 				goal: 2,
 				calculate: (stats) => {
@@ -796,6 +807,7 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.typeEndorsement,
 			crossCountryCommonRequirements.rigging,
 			{
+				// Clubreglement v14.6 §4.3.7: "10 overlandvluchten waarvan minimaal 4 van tenminste 200 kilometer". Counts starts (sum of the starts field)
 				name: '10 overlandvluchten',
 				goal: 10,
 				calculate: (stats) => stats.xcountryFlightsCount
@@ -843,6 +855,7 @@ const config: Permission[] = [
 			crossCountryCommonRequirements.typeEndorsement,
 			crossCountryCommonRequirements.rigging,
 			{
+				// Clubreglement v14.6 §4.3.11: "4 overlandvluchten waarvan minimaal 2 van tenminste 200 kilometer". Counts flights (logbook rows)
 				name: '4 overlandvluchten',
 				goal: 4,
 				calculate: (stats) => {

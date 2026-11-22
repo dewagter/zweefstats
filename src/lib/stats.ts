@@ -119,6 +119,9 @@ export function getTimes(data: DutchFlight[], pilot: string, pilotId: number | n
 	const paxTimeFormatted = formatTime(paxTime);
 	const instructorTimeFormatted = formatTime(instructorTime);
 
+	// Clubreglement v14.6 §4.3: an "overlandvlucht op type" is an announced cross-country flight of
+	// at least 100 km (the distance is not checked here). §5.7: after half an hour it must be clear
+	// whether an attempt is continued, so shorter flights are counted as attempts (overlandpogingen).
 	// Find all xcountry flights paid for by the pilot
 	const xcountryFlights = data.filter((a) => {
 		// Check if the pilot was PIC or the paying member, and it's overland with valid flight duration > 33 minutes
