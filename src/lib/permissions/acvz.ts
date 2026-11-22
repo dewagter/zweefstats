@@ -13,7 +13,7 @@ function totalStartCount(stats: Stats, types: string[]) {
 // Number of cross-country flights of at least the given distance in km (field `afstand`).
 // Clubreglement v14.6 §4.3 asks for a minimum number of 200 km or 300 km flights per type.
 function longXcountryFlightCount(stats: Stats, km: number) {
-	return stats.xcountryFlights.filter((flight) => Number(flight.afstand) >= km).length;
+	return stats.typeXcountryFlights.filter((flight) => Number(flight.afstand) >= km).length;
 }
 
 // An ICAO airport code is 4 capital letters. The first letter is the ICAO region, and the
@@ -434,7 +434,7 @@ const config: Permission[] = [
 				// always applies: at least 3 launches as PIC in sailplanes (no TMG) in the last 90 days.
 				// EASA.SFCL.160(e)(1): "three launches in sailplanes, excluding TMGs"
 				// https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02018R1976-20211115
-				name: 'Recency EASA.SFCL.160(e): minimaal 3 starts als gezagvoerder in de afgelopen 90 dagen (zweefvliegtuig, geen TMG)',
+				name: 'Minimaal 3 starts als gezagvoerder in de afgelopen 90 dagen (zweefvliegtuig, geen TMG)',
 				goal: 3,
 				calculate: (stats) => {
 					const now = new Date();
@@ -474,12 +474,12 @@ const config: Permission[] = [
 				// Clubreglement v14.6 §4.2.13: "10 overlandvluchten". Counts starts (sum of the starts field)
 				name: 'Minimaal 10 overland vluchten',
 				goal: 10,
-				calculate: (stats) => stats.xcountryFlightsCount
+				calculate: (stats) => stats.typeXcountryFlightsCount
 			},
 			{
 				// Clubreglement v14.6 §4.2.13: "Een landing op een ander vliegveld geldt in deze niet
 				// als buitenlanding."
-				name: 'Minimaal 2 buitenlandingen, niet op een ander vliegveld (§4.2.13)',
+				name: 'Minimaal 2 buitenlandingen, niet op een ander vliegveld',
 				goal: 2,
 				calculate: (stats) => outlandingsAwayFromAirfields(stats)
 			},
@@ -488,7 +488,7 @@ const config: Permission[] = [
 			},
 			{
 				// Clubreglement v14.6 §4.2.13
-				name: 'Twee goede instructie / examen starts op de Duo Discus XLT of Arcus T met verschillende door de club daartoe aangewezen turbo instructeurs (§4.2.13).'
+				name: 'Twee goede instructie / examen starts op de Duo Discus XLT of Arcus T met verschillende door de club daartoe aangewezen turbo instructeurs.'
 			}
 		]
 	},
@@ -557,7 +557,7 @@ const config: Permission[] = [
 				name: 'Tenminste 2 overlandvluchten',
 				goal: 2,
 				calculate: (stats) => {
-					return stats.xcountryFlights.length;
+					return stats.typeXcountryFlights.length;
 				}
 			}
 		]
@@ -590,7 +590,7 @@ const config: Permission[] = [
 				name: 'Tenminste 2 overlandvluchten',
 				goal: 2,
 				calculate: (stats) => {
-					return stats.xcountryFlights.length;
+					return stats.typeXcountryFlights.length;
 				}
 			}
 		]
@@ -622,7 +622,7 @@ const config: Permission[] = [
 				name: '4 overlandvluchten',
 				goal: 4,
 				calculate: (stats) => {
-					return stats.xcountryFlights.length;
+					return stats.typeXcountryFlights.length;
 				}
 			},
 			{
@@ -635,7 +635,7 @@ const config: Permission[] = [
 				name: 'Tenminste 2 van deze overlandvluchten op LS-4b/LS-8 of gelijkwaardig type',
 				goal: 2,
 				calculate: (stats) => {
-					const relevantFlights = stats.xcountryFlights.filter((flight) =>
+					const relevantFlights = stats.typeXcountryFlights.filter((flight) =>
 						[...commonTypes.ls4, ...commonTypes.ls8].includes(flight.type || '')
 					);
 					return relevantFlights.length;
@@ -668,7 +668,7 @@ const config: Permission[] = [
 				// ASG-29E: no cross-country paragraph in Clubreglement v14.6. Counts starts (sum of the starts field)
 				name: '10 overlandvluchten',
 				goal: 10,
-				calculate: (stats) => stats.xcountryFlightsCount
+				calculate: (stats) => stats.typeXcountryFlightsCount
 			},
 			{
 				name: 'Minimaal 3 overlandvluchten van tenminste 200 kilometer',
@@ -680,7 +680,7 @@ const config: Permission[] = [
 				name: 'Tenminste 1 van deze overlandvluchten op ASW-27 of gelijkwaardig type',
 				goal: 1,
 				calculate: (stats) => {
-					const relevantFlights = stats.xcountryFlights.filter(
+					const relevantFlights = stats.typeXcountryFlights.filter(
 						(flight) => commonTypes.asw27.includes(flight.type || '')
 					);
 					return relevantFlights.length;
@@ -719,7 +719,7 @@ const config: Permission[] = [
 				// Clubreglement v14.6 §4.3.9: "12 overlandvluchten waarvan minimaal 3 van tenminste 300 kilometer". Counts starts (sum of the starts field)
 				name: '12 overlandvluchten',
 				goal: 12,
-				calculate: (stats) => stats.xcountryFlightsCount
+				calculate: (stats) => stats.typeXcountryFlightsCount
 			},
 			{
 				name: 'Minimaal 3 overlandvluchten van tenminste 300 kilometer',
@@ -731,7 +731,7 @@ const config: Permission[] = [
 				name: 'Tenminste 2 van deze overlandvluchten op een Duo Discus (XLT)',
 				goal: 2,
 				calculate: (stats) =>
-					stats.xcountryFlights.filter((flight) =>
+					stats.typeXcountryFlights.filter((flight) =>
 						commonTypes.duo.includes(flight.type || '')
 					).length
 			},
@@ -768,7 +768,7 @@ const config: Permission[] = [
 				name: '4 overlandvluchten',
 				goal: 4,
 				calculate: (stats) => {
-					return stats.xcountryFlights.length;
+					return stats.typeXcountryFlights.length;
 				}
 			},
 			{
@@ -781,7 +781,7 @@ const config: Permission[] = [
 				name: 'Tenminste 2 van deze overlandvluchten op LS-4b/LS-8 of gelijkwaardig type',
 				goal: 2,
 				calculate: (stats) => {
-					const relevantFlights = stats.xcountryFlights.filter((flight) =>
+					const relevantFlights = stats.typeXcountryFlights.filter((flight) =>
 						[...commonTypes.ls4, ...commonTypes.ls8].includes(flight.type || '')
 					);
 					return relevantFlights.length;
@@ -816,7 +816,7 @@ const config: Permission[] = [
 				// Clubreglement v14.6 §4.3.7: "10 overlandvluchten waarvan minimaal 4 van tenminste 200 kilometer". Counts starts (sum of the starts field)
 				name: '10 overlandvluchten',
 				goal: 10,
-				calculate: (stats) => stats.xcountryFlightsCount
+				calculate: (stats) => stats.typeXcountryFlightsCount
 			},
 			{
 				name: 'Minimaal 4 overlandvluchten van tenminste 200 kilometer',
@@ -865,7 +865,7 @@ const config: Permission[] = [
 				name: '4 overlandvluchten',
 				goal: 4,
 				calculate: (stats) => {
-					return stats.xcountryFlights.length;
+					return stats.typeXcountryFlights.length;
 				}
 			},
 			{
