@@ -364,8 +364,8 @@ const config: Permission[] = [
 			{
 				name: '> 10 uur of 45 starts als PIC sinds SPL (EASA)',
 				calculate: (stats) => {
-					if (stats.timesAfterExam.gliderPicTime / 60 > 10) return 1;
-					if (stats.timesAfterExam.gliderPicFlightsCount > 45) return 1;
+					if (stats.timesAfterExam.picTime / 60 > 10) return 1;
+					if (stats.timesAfterExam.picFlightsCount > 45) return 1;
 					return 0;
 				}
 			},
