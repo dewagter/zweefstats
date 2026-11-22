@@ -396,10 +396,14 @@ const config: Permission[] = [
 				name: 'Pax check flight by FI(s)'
 			},
 			{
-				name: '> 10 uur of 45 starts als PIC sinds SPL (EASA)',
+				// EASA.SFCL.115(a)(2)(ii)(A): "at least 10 hours of flight time or 30 launches or take-offs
+				// and landings as PIC on sailplanes" after the issue of the SPL. A powered sailplane (and so
+				// a TMG) is a sailplane in this regulation, so TMG flights count here.
+				// https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02018R1976-20211115
+				name: 'Minimaal 10 uur of 30 starts als PIC sinds SPL (EASA.SFCL.115)',
 				calculate: (stats) => {
-					if (stats.timesAfterExam.picTime / 60 > 10) return 1;
-					if (stats.timesAfterExam.picFlightsCount > 45) return 1;
+					if (stats.timesAfterExam.picTime / 60 >= 10) return 1;
+					if (stats.timesAfterExam.picFlightsCount >= 30) return 1;
 					return 0;
 				}
 			},
@@ -427,7 +431,9 @@ const config: Permission[] = [
 			},
 			{
 				// Clubreglement v14.6 §4.2.14: for passenger flights the recency of EASA.SFCL.160(e)
-				// always applies: at least 3 launches as PIC in sailplanes (no TMG) in the last 90 days
+				// always applies: at least 3 launches as PIC in sailplanes (no TMG) in the last 90 days.
+				// EASA.SFCL.160(e)(1): "three launches in sailplanes, excluding TMGs"
+				// https://eur-lex.europa.eu/legal-content/EN/TXT/?uri=CELEX:02018R1976-20211115
 				name: 'Recency EASA.SFCL.160(e): minimaal 3 starts als gezagvoerder in de afgelopen 90 dagen (zweefvliegtuig, geen TMG)',
 				goal: 3,
 				calculate: (stats) => {
