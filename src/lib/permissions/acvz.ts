@@ -424,6 +424,26 @@ const config: Permission[] = [
 			},
 			{
 				name: 'Voldoen aan de SFCL eisen omtrent passagiers vliegen EASA.SFCL.115'
+			},
+			{
+				// Clubreglement v14.6 §4.2.14: for passenger flights the recency of EASA.SFCL.160(e)
+				// always applies: at least 3 launches as PIC in sailplanes (no TMG) in the last 90 days
+				name: 'Recency EASA.SFCL.160(e): minimaal 3 starts als gezagvoerder in de afgelopen 90 dagen (zweefvliegtuig, geen TMG)',
+				goal: 3,
+				calculate: (stats) => {
+					const now = new Date();
+					const ninetyDaysAgo = new Date();
+					ninetyDaysAgo.setDate(ninetyDaysAgo.getDate() - 90);
+
+					return stats.picFlights
+						.filter((flight) => {
+							if (typeof flight.datum !== 'string') return false;
+							if (flight.start_methode === 'tmg') return false;
+							const flightDate = new Date(flight.datum);
+							return flightDate >= ninetyDaysAgo && flightDate <= now;
+						})
+						.reduce((total, flight) => total + (typeof flight.starts === 'number' ? flight.starts : 0), 0);
+				}
 			}
 		]
 	},
